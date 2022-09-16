@@ -2,6 +2,12 @@
 
 Pakiet do automatycznych backupów
 
+## Instalacja
+
+```bash
+pip install git+https://github.com/cezary986/backup
+```
+
 ## Konfiguracja
 
 W katalogu gdzie wywoływane są komendy powinien znajdować się plik

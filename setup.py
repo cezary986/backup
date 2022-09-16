@@ -8,7 +8,7 @@ setup(
     description='Package for automatic backups',
     packages=find_packages(),
     install_requires=[
-        'click==8.1.3',
+        'click>=8.0.1',
         'requests>=0.10',
         'pycryptodome>=3.9.6,<4.0.0',
         'pathlib==1.0.1',
