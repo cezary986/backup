@@ -1,0 +1,1 @@
+Fork of 'mega.py' package with fixes bugs
