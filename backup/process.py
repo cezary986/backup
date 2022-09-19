@@ -53,8 +53,8 @@ def auto_backups(ctx: CLIContext, every: str):
             try:
                 print('Starting backup...')
                 manager.backup()
-                logger.info(click.echo(click.style(
-                    'Successfully performed backup', fg='green')))
+                logger.info(click.style(
+                    'Successfully performed backup', fg='green'))
                 logger.info(get_next_planned_backup_communicate(
                     wait_hours=every_hours))
                 backup_failed = False
