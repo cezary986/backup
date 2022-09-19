@@ -40,6 +40,10 @@ def auto_backups(ctx: CLIContext, every: str):
         manager.logger.setLevel(logging.ERROR)
         manager.backend.logger.setLevel(logging.ERROR)
     logger = logging.getLogger('Backup process')
+    fh = logging.FileHandler(f'./backups.log')
+    formatter = logging.Formatter('[%(levelname)s] %(asctime)s %(message)s')
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
     logger.info(f'Starting backup process (time interval: {every})')
     logger.info(get_next_planned_backup_communicate(wait_hours=every_hours))
     hours_conter: int = every_hours
