@@ -65,7 +65,7 @@ class BackupBackend(ABC):
         raise Exception('Not implemented exception')
 
     @abstractmethod
-    def create_folder(self, path: str) -> BackupFolder:
+    def create_folder_if_not_exists(self, path: str) -> BackupFolder:
         """Creates folder with given path, do nothing if folder already exists
 
         Args:

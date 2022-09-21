@@ -1,6 +1,6 @@
 from __future__ import annotations
 import os
-from typing import List
+from typing import List, Tuple
 from .backend import *
 from .mega import Mega
 
@@ -105,7 +105,7 @@ class MegaBackupBackend(BackupBackend):
                 return file
         return file
 
-    def create_folder(self, path: str) -> BackupFolder:
+    def create_folder_if_not_exists(self, path: str) -> BackupFolder:
         """Creates folder with given path, do nothing if folder already exists
 
         Args:
@@ -114,13 +114,21 @@ class MegaBackupBackend(BackupBackend):
         Returns:
             BackupFolder: created folder object
         """
-        dirs = self.m.create_folder(path)
         folder: MegaBackupFolder = MegaBackupFolder()
 
         folder_name: str = os.path.basename(path)
-        folder.id = dirs[folder_name]
+        folder.id = None
         folder.path = path
         folder.name = folder_name
+
+        folder_data: Tuple[str, dict] = self.m.find(path)
+        if folder_data is None:
+            # folder does not exists
+            dirs = self.m.create_folder(path)
+            folder.id = dirs[folder_name]
+        else:
+            folder.id = folder_data[0]
+
         return folder
 
     def upload_file(self, file_path: str, directory_path: str) -> BackupFile:

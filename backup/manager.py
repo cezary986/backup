@@ -127,7 +127,7 @@ class BackupManager:
 
         try:
             # create directory in cloud for backup (if not exist, otherwise do nothing)
-            self.backend.create_folder(self.config.root_cloud_dir)
+            self.backend.create_folder_if_not_exists(self.config.root_cloud_dir)
             old_backup_file: BackupFile = self.backend.get_file_by_path(
                 f'{self.config.root_cloud_dir}/{BackupManager.BACKUP_DEFAULT_FILENAME}.zip'
             )

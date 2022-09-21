@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='backup',
-    version='1.0.0',
+    version='1.0.1',
     author='Cezary Maszczyk',
     author_email='cezary.maszczyk@gmail.com',
     description='Package for automatic backups',

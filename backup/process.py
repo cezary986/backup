@@ -67,8 +67,11 @@ def auto_backups(ctx: CLIContext, every: str):
                 logger.info(get_next_planned_backup_communicate(
                     wait_minutes=RETRY_IN_MINUTES))
                 backup_failed = True
-        if backup_failed:
-            time.sleep(RETRY_IN_MINUTES * 60)
+            if backup_failed:
+                time.sleep(RETRY_IN_MINUTES * 60)
+                continue
+            else:
+                hours_conter = 0
         else:
             time.sleep(HOUR_TO_SECONDS)
             hours_conter += 1
