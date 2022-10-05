@@ -52,12 +52,17 @@ def auto_backups(ctx: CLIContext, every: str):
         if hours_conter == every_hours:
             try:
                 print('Starting backup...')
-                manager.backup()
+                error: Exception = manager.backup()
                 logger.info(click.style(
                     'Successfully performed backup', fg='green'))
                 logger.info(get_next_planned_backup_communicate(
                     wait_hours=every_hours))
-                backup_failed = False
+                
+                if error is None:
+                    backup_failed = False
+                else:
+                    backup_failed = True
+                    raise error
             except Exception as error:
                 logger.error(error)
                 logger.error(

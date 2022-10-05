@@ -156,9 +156,10 @@ class BackupManager:
                 click.style(
                     f'Fail to backup files using using backup backend: {self.backend.__class__.__name__}', fg='red')
             )
-            return  # fails silently
+            return e  # fails silently
         self.logger.info(click.style(
             'Backup finished with success!', fg='green'))
+        return None
 
     def restore(self) -> None:
         """Restores files from backup
